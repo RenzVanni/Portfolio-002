@@ -1,0 +1,10 @@
+{
+  "id": 1,
+  "image": ["profile.jpg", "profile1.jpg", "profile2.jpg"],
+  "name": "Renz Vanni M. Bato",
+  "context": "Hi, my name is Renz Vanni M. Bato, I’m from Dasmarinas, Cavite. I took BSIT at STI College Dasmarinas. During my first year as a college student, coding didn’t seem to be my passion, even on my second year I still don’t know my path that I should be taken, not until my third year comes, on this year the capstone was introduce and most of the project in capstone was website, I was intrigue on how was this website was made so I studied making website myself I learned HTML, CSS and JavaScript as it is the core of building a frontend for the website. During the development of our capstone, I develop the backend using PHP even though it is not the language I commonly use, we still manage to make a full stack website, while developing the backend I also help to develop the frontend. Frontend development may be my first ideal job but my goal was to be a full stack developer so I continuously learning to achieve that goal.",
+  "company": "Prosperna",
+  "logo": "/logo/prosperna-logo.png",
+  "role": "Frontend Developer Intern",
+  "date": "February 2024 - May 2024"
+}
