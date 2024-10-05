@@ -3,7 +3,6 @@ import { SiXampp } from "react-icons/si";
 import { FaHtml5 } from "react-icons/fa";
 import { FaCss3Alt } from "react-icons/fa";
 import { RiJavascriptLine } from "react-icons/ri";
-import { CgProfile } from "react-icons/cg";
 
 const data = {
   title:

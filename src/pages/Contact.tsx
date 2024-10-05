@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { HOME } from "../constants/Slugs";
 import { IoArrowBackOutline } from "react-icons/io5";

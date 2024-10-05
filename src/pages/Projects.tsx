@@ -1,15 +1,12 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { HOME } from "../constants/Slugs";
 import { GrFormNextLink, GrFormPreviousLink } from "react-icons/gr";
 //data
 import Data from "../data/projects";
-import { AnimatePresence, delay, motion, wrap } from "framer-motion";
-import { GiDuration } from "react-icons/gi";
-import useEmblaCarousel, { UseEmblaCarouselType } from "embla-carousel-react";
-
-import Fade from "embla-carousel-fade";
+import { motion } from "framer-motion";
+import useEmblaCarousel from "embla-carousel-react";
 
 const Projects = () => {
   const slide_count = Data.length;

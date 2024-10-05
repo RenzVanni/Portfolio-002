@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { IoArrowBackOutline, IoPlayCircleOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { HOME } from "../constants/Slugs";

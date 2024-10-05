@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { isRouteErrorResponse, Link, useRouteError } from "react-router-dom";
 import { HOME } from "../constants/Slugs";
 

@@ -1,8 +1,4 @@
-import React, { useState } from "react";
-import { IoPlayCircleOutline } from "react-icons/io5";
-import Others from "../components/Others";
-import homeData from "../data/home";
-import { FaGithub } from "react-icons/fa";
+import { useState } from "react";
 import { IoArrowBackOutline } from "react-icons/io5";
 import { HOME } from "../constants/Slugs";
 import { Link } from "react-router-dom";

@@ -3,7 +3,7 @@ import homeData from "../data/home";
 import { IoPlayCircleOutline } from "react-icons/io5";
 import menuData from "../data/menu";
 import { Link } from "react-router-dom";
-import { favorite, playlist } from "../helpers/spotify-api";
+import { favorite } from "../helpers/spotify-api";
 import { useEffect, useRef, useState } from "react";
 import Likes from "../data/likes.json";
 
