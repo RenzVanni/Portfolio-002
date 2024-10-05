@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "like": "Music"
+  },
+  {
+    "id": 2,
+    "like": "Mobile Game"
+  },
+  {
+    "id": 3,
+    "like": "Coding"
+  },
+  {
+    "id": 4,
+    "like": "Anime"
+  },
+  {
+    "id": 5,
+    "like": "Movies"
+  }
+]

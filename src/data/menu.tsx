@@ -3,7 +3,15 @@ import { LuListMusic } from "react-icons/lu";
 import { ImProfile } from "react-icons/im";
 import { GoProjectRoadmap } from "react-icons/go";
 import { FaProjectDiagram } from "react-icons/fa";
-import { ABOUTME, CAPSTONE, HOME, MUSIC, PROJECT } from "../constants/Slugs";
+import { TiContacts } from "react-icons/ti";
+import {
+  ABOUTME,
+  CAPSTONE,
+  CONTACT,
+  HOME,
+  MUSIC,
+  PROJECT,
+} from "../constants/Slugs";
 
 const menuData = [
   {
@@ -35,6 +43,12 @@ const menuData = [
     title: "Music",
     slug: MUSIC,
     icon: LuListMusic,
+  },
+  {
+    id: 6,
+    title: "Contact",
+    slug: CONTACT,
+    icon: TiContacts,
   },
 ];
 

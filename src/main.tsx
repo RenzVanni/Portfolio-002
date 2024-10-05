@@ -7,12 +7,22 @@ import Home from "./pages/Home.tsx";
 import AboutMe from "./pages/AboutMe.tsx";
 import Capstone from "./pages/Capstone.tsx";
 import NotFound from "./pages/NotFound.tsx";
-import { ABOUTME, CAPSTONE, HOME, PROJECT } from "./constants/Slugs.ts";
+import {
+  ABOUTME,
+  CAPSTONE,
+  CONTACT,
+  HOME,
+  INDEX,
+  MUSIC,
+  PROJECT,
+} from "./constants/Slugs.ts";
 import Projects from "./pages/Projects.tsx";
+import Musics from "./pages/Musics.tsx";
+import Contact from "./pages/Contact.tsx";
 
 const router = createBrowserRouter([
   {
-    path: HOME,
+    path: INDEX,
     element: <App />,
     errorElement: <NotFound />,
     children: [
@@ -31,6 +41,14 @@ const router = createBrowserRouter([
       {
         path: PROJECT,
         element: <Projects />,
+      },
+      {
+        path: MUSIC,
+        element: <Musics />,
+      },
+      {
+        path: CONTACT,
+        element: <Contact />,
       },
     ],
   },

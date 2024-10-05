@@ -17,6 +17,9 @@ export default {
         profile: "url('/profile/profile.jpg')",
         capstone: "url('/thumbnail/capstone.png')",
       },
+      boxShadow: {
+        "inner-bottom": "inset 0 -5px 10px rgba(0, 0, 0, .3)",
+      },
     },
   },
   plugins: [],

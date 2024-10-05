@@ -1,40 +1,51 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { HOME } from "../constants/Slugs";
-import { GrFormNextLink } from "react-icons/gr";
-import { GrFormPreviousLink } from "react-icons/gr";
+import { GrFormNextLink, GrFormPreviousLink } from "react-icons/gr";
 //data
-import Data from "../data/projects.json";
-import { motion, useDragControls } from "framer-motion";
+import Data from "../data/projects";
+import { AnimatePresence, delay, motion, wrap } from "framer-motion";
+import { GiDuration } from "react-icons/gi";
+import useEmblaCarousel, { UseEmblaCarouselType } from "embla-carousel-react";
+
+import Fade from "embla-carousel-fade";
 
 const Projects = () => {
-  const [positionHandler, setPositionHandler] = useState(
-    Data.map((item, index) => index)
-  );
+  const slide_count = Data.length;
+  const images = Array.from(Array(slide_count).keys());
+  // const [windowsWidth, setWindowsWidth] = useState(false);
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: true,
+    slidesToScroll: 1,
+    align: "start",
+    containScroll: "trimSnaps",
+    // axis: windowsWidth ? "y" : "x",
+  });
 
-  const [direction, setDirection] = useState(0);
+  // window.addEventListener("resize", () => {
+  //   console.log(window.innerWidth);
+  //   if (window.innerWidth <= 640) {
+  //     setWindowsWidth(true);
+  //   } else {
+  //     setWindowsWidth(false);
+  //   }
+  //   console.log(windowsWidth);
+  // });
 
-  const next = () => {
-    setDirection(1);
-    setPositionHandler((prev) => {
-      const updatePosition = prev.map((prev2) => (prev2 + 1) % Data.length);
-      return updatePosition;
-    });
-  };
+  console.log(emblaApi?.slidesInView());
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev();
+  }, [emblaApi]);
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext();
+  }, [emblaApi]);
 
-  const previous = () => {
-    setDirection(0);
-    setPositionHandler((prev) => {
-      const updatePosition = prev.map(
-        (prev2) => (prev2 - 1 + Data.length) % Data.length
-      );
-      return updatePosition;
-    });
-  };
-
+  useEffect(() => {
+    if (!emblaApi) return;
+  });
   return (
-    <div className="flex-1 px-3 lg:pl-6">
+    <div className="flex-1 px-3 lg:pl-6 relative">
       <div className="hidden lg:flex lg:justify-end">
         <div className="w-fit p-6 cursor-pointer hover:bg-hoverBg">
           <Link to={HOME}>
@@ -45,32 +56,85 @@ const Projects = () => {
 
       <p className="font-bold text-3xl mb-6">Projects</p>
 
-      <div className="flex justify-end mb-3 pr-24">
-        <div className="flex">
-          <div className="p-3 hover:bg-hoverBg">
-            <GrFormPreviousLink onClick={next} className="text-3xl" />
-          </div>
-          <div className="p-3 hover:bg-hoverBg">
-            <GrFormNextLink onClick={next} className="text-3xl" />
+      <div className="flex gap-6 flex-col-reverse sm:gap-0 sm:flex-col">
+        <div className="flex justify-center  lg:mb-3 lg:justify-end lg:pr-24">
+          <div className="flex">
+            <div
+              onClick={scrollPrev}
+              className="p-3 border border-border hover:bg-hoverBg"
+            >
+              <GrFormPreviousLink className="text-3xl" />
+            </div>
+            <div
+              onClick={scrollNext}
+              className="p-3 border border-border hover:bg-hoverBg"
+            >
+              <GrFormNextLink className="text-3xl" />
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className=" bg-blue-500 h-[250px] relative">
-        <motion.div
-          style={{ width: `${Data.length * 450}px` }} // Adjust width based on the number of items
-          animate={{ x: direction * -450 }} // Animate based on the direction
-          transition={{ type: "spring", ease: "easeInOut", duration: 1 }} // S
-          className="bg-red-300 flex space-x-3 absolute inset-0 h-full w-full"
-        >
-          {positionHandler.map((item) => (
-            <motion.img
-              key={Data[item]?.id}
-              src={Data[item]?.image}
-              className="w-[450px] h-full object-cover"
-            />
-          ))}
-        </motion.div>
+        <div className="h-[350px] relative ">
+          <div
+            className="embla flex absolute inset-0 md:w-[1250px]"
+            ref={emblaRef}
+          >
+            <div className="embla__container">
+              {images.map((item) => {
+                return (
+                  <motion.div
+                    whileHover="hover"
+                    key={item}
+                    className="embla__slide relative overflow-hidden"
+                  >
+                    <img
+                      src={Data[item].hero}
+                      className="w-full h-full object-cover"
+                    />
+                    <motion.div
+                      className="w-full bg-black/80 flex-1 h-full absolute inset-0 p-3"
+                      initial={{ opacity: 0, y: 100 }}
+                      variants={{
+                        hover: { opacity: 1, y: 0 },
+                      }}
+                      // animate="initial"
+                      // whileHover="hover"
+                      transition={{
+                        y: { type: "spring", stiffness: 60, damping: 10 },
+                        opacity: { duration: 0.2 },
+                      }}
+                    >
+                      <p className="font-semibold text-text text-xl">
+                        {Data[item].title}
+                      </p>
+                      <p className="text-text text-sm mb-6">
+                        {Data[item].context}
+                      </p>
+
+                      <div className="flex items-center justify-start space-x-3 mb-3">
+                        <p className="text-text text-md">Tech Stacks</p>
+                        <hr className="border border-white h-[20px]" />
+                        {Data[item].techs.map((Item, index) => (
+                          <Item key={index} className="text-lg text-text" />
+                        ))}
+                      </div>
+
+                      <div className="flex items-center justify-start space-x-3">
+                        <p className="text-text">Links</p>
+                        <hr className="border border-white h-[20px]" />
+                        {Data[item].linksIcon.map((Icon, index) => (
+                          <a href={Data[item].link[index]} target="_blank">
+                            <Icon className="text-lg text-text hover:scale-110" />
+                          </a>
+                        ))}
+                      </div>
+                    </motion.div>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
