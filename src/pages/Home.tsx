@@ -44,9 +44,9 @@ const Home = () => {
         const data = await favorite();
         setMusicData(data);
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
-      console.log(musicData);
+      // console.log(musicData);
     };
     response();
   }, []);
@@ -54,7 +54,7 @@ const Home = () => {
   return (
     <div className="w-full overflow-y-scroll lg:flex lg:flex-1 lg:overflow-y-visible">
       <div className="w-full overflow-y-scroll pb-3 lg:flex-1 lg:flex lg:flex-col lg:overflow-visible">
-        <div className="relative mb-6 lg:h-3/4">
+        <div className="relative mb-6 lg:h-[440px]">
           <div className="bg-mobile bg-center bg-cover bg-no-repeat px-3 py-20 flex-1 shadow-2xl lg:bg-website lg:absolute lg:top-[-50px] lg:left-0 lg:right-0">
             <p className="text-text text-4xl font-bold">{homeData?.name}</p>
 
@@ -78,9 +78,9 @@ const Home = () => {
 
         <div className="flex-1 px-3 overflow-y-scroll">
           <p className="text-text2 text-xl font-semibold mb-3">Likes</p>
-          <div className="flex items-center space-x-3 mb-6">
+          <div className="flex items-center overflow-x-scroll space-x-3 mb-6">
             {Likes.map((item) => (
-              <div key={item.id} className="border border-border p-2">
+              <div key={item.id} className="border border-border p-2 max-w-fit">
                 <p>{item.like}</p>
               </div>
             ))}

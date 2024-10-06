@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { CiMenuKebab } from "react-icons/ci";
 import { SiIrobot } from "react-icons/si";
-import { SiAboutdotme } from "react-icons/si";
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import menuData from "./data/menu";
-import axios from "axios";
 
 const App = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -16,10 +14,10 @@ const App = () => {
     const spotifyToken = async () => {
       const queryParams = new URLSearchParams(location.search);
       const accessToken = queryParams.get("access_token");
-      const refreshToken = queryParams.get("refresh_token");
+      // const refreshToken = queryParams.get("refresh_token");
 
       if (!accessToken) {
-        window.location.href = "http://localhost:3000/login";
+        window.location.href = import.meta.env.VITE_BACKEND;
       } else {
         localStorage.setItem("access_token", accessToken);
         navigate("/Home");

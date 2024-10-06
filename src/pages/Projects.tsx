@@ -42,7 +42,7 @@ const Projects = () => {
     if (!emblaApi) return;
   });
   return (
-    <div className="flex-1 px-3 lg:pl-6 relative">
+    <div className="flex-1 px-3 lg:px-0 relative">
       <div className="hidden lg:flex lg:justify-end">
         <div className="w-fit p-6 cursor-pointer hover:bg-hoverBg">
           <Link to={HOME}>
@@ -54,7 +54,7 @@ const Projects = () => {
       <p className="font-bold text-3xl mb-6">Projects</p>
 
       <div className="flex gap-6 flex-col-reverse sm:gap-0 sm:flex-col">
-        <div className="flex justify-center  lg:mb-3 lg:justify-end lg:pr-24">
+        <div className="flex justify-center  lg:mb-3 sm:justify-end lg:pr-24">
           <div className="flex">
             <div
               onClick={scrollPrev}
@@ -120,7 +120,11 @@ const Projects = () => {
                         <p className="text-text">Links</p>
                         <hr className="border border-white h-[20px]" />
                         {Data[item].linksIcon.map((Icon, index) => (
-                          <a href={Data[item].link[index]} target="_blank">
+                          <a
+                            href={Data[item].link[index]}
+                            key={index}
+                            target="_blank"
+                          >
                             <Icon className="text-lg text-text hover:scale-110" />
                           </a>
                         ))}

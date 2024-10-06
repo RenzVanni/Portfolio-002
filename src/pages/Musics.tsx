@@ -50,7 +50,7 @@ const Musics = () => {
   useEffect(() => {
     const response = async () => {
       const data = await playlist();
-      console.log(data?.playlist);
+      // console.log(data?.playlist);
       setPlaylistData({
         playlist: data?.playlist,
         cover: data?.coverImage?.url,

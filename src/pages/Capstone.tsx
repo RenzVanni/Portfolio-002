@@ -12,8 +12,8 @@ const Capstone = () => {
   return (
     <div className="w-full overflow-y-scroll lg:flex lg:flex-1 lg:overflow-y-visible">
       <div className="w-full overflow-y-scroll pb-3 lg:flex-1 lg:flex lg:flex-col lg:overflow-visible">
-        <div className="relative mb-3 h-[300px] md:h-[400px] lg:h-[400px]">
-          <div className="bg-capstone bg-center  bg-cover bg-no-repeat px-3 py-20 h-full lg:flex-1 shadow-2xl lg:absolute lg:top-[-50px] lg:left-0 lg:right-0"></div>
+        <div className="relative mb-3 w-full sm:h-[300px] md:h-[450px]">
+          <div className="bg-capstone bg-center w-full bg-cover bg-no-repeat px-3 py-20 h-full lg:flex-1 shadow-2xl lg:absolute lg:top-[-50px] lg:left-0 lg:right-0"></div>
         </div>
 
         <div className="overflow-y-scroll px-3 lg:px-0">
