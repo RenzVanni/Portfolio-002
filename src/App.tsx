@@ -21,7 +21,6 @@ const App = () => {
       } else {
         localStorage.setItem("access_token", accessToken);
         navigate("/Home");
-        console.log("User is already authenticated.");
       }
     };
 
@@ -39,7 +38,13 @@ const App = () => {
             {menuData.map((item) => (
               <div key={item.id}>
                 <Link to={item.slug}>
-                  <item.icon className="text-black text-2xl hover:scale-110 cursor-pointer" />
+                  <item.icon
+                    className={`text-2xl hover:scale-110 cursor-pointer ${
+                      location.pathname === item.slug
+                        ? "text-menu"
+                        : "text-offMenu"
+                    }`}
+                  />
                 </Link>
               </div>
             ))}
@@ -53,14 +58,20 @@ const App = () => {
               {menuData.map((item) => (
                 <div key={item.id}>
                   <Link to={item.slug}>
-                    <item.icon className="text-black text-2xl hover:scale-110 cursor-pointer" />
+                    <item.icon
+                      className={`text-2xl hover:scale-110 cursor-pointer ${
+                        location.pathname === item.slug
+                          ? "text-menu"
+                          : "text-offMenu"
+                      }`}
+                    />
                   </Link>
                 </div>
               ))}
             </div>
             <CiMenuKebab
               onClick={() => setShowMenu((prev) => !prev)}
-              className="text-black text-2xl lg:hidden"
+              className="text-menu text-2xl lg:hidden"
             />
           </div>
         </div>

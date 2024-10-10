@@ -20,17 +20,6 @@ const Projects = () => {
     // axis: windowsWidth ? "y" : "x",
   });
 
-  // window.addEventListener("resize", () => {
-  //   console.log(window.innerWidth);
-  //   if (window.innerWidth <= 640) {
-  //     setWindowsWidth(true);
-  //   } else {
-  //     setWindowsWidth(false);
-  //   }
-  //   console.log(windowsWidth);
-  // });
-
-  console.log(emblaApi?.slidesInView());
   const scrollPrev = useCallback(() => {
     if (emblaApi) emblaApi.scrollPrev();
   }, [emblaApi]);
@@ -46,12 +35,12 @@ const Projects = () => {
       <div className="hidden lg:flex lg:justify-end">
         <div className="w-fit p-6 cursor-pointer hover:bg-hoverBg">
           <Link to={HOME}>
-            <IoCloseSharp className="text-3xl" />
+            <IoCloseSharp className="text-3xl text-menu" />
           </Link>
         </div>
       </div>
 
-      <p className="font-bold text-3xl mb-6">Projects</p>
+      <p className="font-bold text-3xl mb-6 text-text2">Projects</p>
 
       <div className="flex gap-6 flex-col-reverse sm:gap-0 sm:flex-col">
         <div className="flex justify-center  lg:mb-3 sm:justify-end lg:pr-24">
@@ -60,13 +49,13 @@ const Projects = () => {
               onClick={scrollPrev}
               className="p-3 border border-border hover:bg-hoverBg"
             >
-              <GrFormPreviousLink className="text-3xl" />
+              <GrFormPreviousLink className="text-3xl text-text2" />
             </div>
             <div
               onClick={scrollNext}
               className="p-3 border border-border hover:bg-hoverBg"
             >
-              <GrFormNextLink className="text-3xl" />
+              <GrFormNextLink className="text-3xl text-text2" />
             </div>
           </div>
         </div>
@@ -110,7 +99,7 @@ const Projects = () => {
 
                       <div className="flex items-center justify-start space-x-3 mb-3">
                         <p className="text-text text-md">Tech Stacks</p>
-                        <hr className="border border-white h-[20px]" />
+                        <hr className="border border-text h-[20px]" />
                         {Data[item].techs.map((Item, index) => (
                           <Item key={index} className="text-lg text-text" />
                         ))}
@@ -118,7 +107,7 @@ const Projects = () => {
 
                       <div className="flex items-center justify-start space-x-3">
                         <p className="text-text">Links</p>
-                        <hr className="border border-white h-[20px]" />
+                        <hr className="border border-text h-[20px]" />
                         {Data[item].linksIcon.map((Icon, index) => (
                           <a
                             href={Data[item].link[index]}

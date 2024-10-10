@@ -37,7 +37,6 @@ export const playlist = async () => {
     const playlist = lists.data.items;
     return { playlist, coverImage };
   } catch (error) {
-    console.log(error);
     return null;
   }
 };

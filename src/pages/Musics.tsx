@@ -50,7 +50,6 @@ const Musics = () => {
   useEffect(() => {
     const response = async () => {
       const data = await playlist();
-      // console.log(data?.playlist);
       setPlaylistData({
         playlist: data?.playlist,
         cover: data?.coverImage?.url,
@@ -63,22 +62,21 @@ const Musics = () => {
       <div className="w-full p-3 lg:flex-1 lg:p-10 lg:overflow-y-scroll">
         <div className="mb-6 hidden lg:block">
           <Link to={HOME}>
-            <IoArrowBackOutline className="text-2xl" />
+            <IoArrowBackOutline className="text-2xl text-menu" />
           </Link>
         </div>
 
-        <p className="font-bold text-3xl mb-6">Music</p>
+        <p className="font-bold text-3xl text-text2 mb-6">Music</p>
         {playlistData.playlist.map((item, index) => {
-          console.log("item ", item);
           return (
-            <div key={index} className="border-b-2  border-border pb-3">
-              <div className="flex items-center space-x-3 h-[80px]">
+            <div key={index} className="shadow-sm mb-3">
+              <div className="flex items-center h-[80px]">
                 <audio
                   ref={(el) => (audioRefs.current[index] = el)}
                   src={item?.track.preview_url}
                   loop
                 ></audio>
-                <div className="h-full">
+                <div className="h-full mr-3">
                   <img
                     src={item?.track?.album?.images[0]?.url}
                     alt="image"
@@ -86,19 +84,23 @@ const Musics = () => {
                   />
                 </div>
                 <div className="flex-1 h-full overflow-y-scroll">
-                  <p className="font-semibold text-lg">{item?.track?.name}</p>
-                  <p className="text-sm">{item?.track?.artists[0]?.name}</p>
+                  <p className="font-semibold text-lg text-text2">
+                    {item?.track?.name}
+                  </p>
+                  <p className="text-sm text-text2">
+                    {item?.track?.artists[0]?.name}
+                  </p>
                 </div>
                 <div className="pr-6">
                   {isPlaying === index.toString() ? (
                     <FaRegStopCircle
                       onClick={() => handleMusicPlayer(index)}
-                      className="text-2xl cursor-pointer"
+                      className="text-2xl text-play cursor-pointer"
                     />
                   ) : (
                     <IoPlayCircleOutline
                       onClick={() => handleMusicPlayer(index)}
-                      className="text-2xl cursor-pointer"
+                      className="text-2xl text-play cursor-pointer"
                     />
                   )}
                 </div>

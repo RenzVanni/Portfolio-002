@@ -7,12 +7,12 @@ import { Link } from "react-router-dom";
 import Data from "../data/aboutMe.json";
 
 const AboutMe = () => {
-  const [profilePic, setProfilePic] = useState("/profile/profile.jpg");
+  const [profilePic, setProfilePic] = useState(`/profile/${Data.image[0]}`);
 
   return (
     <div className="w-full overflow-y-scroll lg:flex lg:flex-1 lg:overflow-y-visible">
       <div className="w-full overflow-y-scroll p-3 lg:flex-1 lg:p-10">
-        <div className="mb-6">
+        <div className="mb-6 hidden lg:block">
           <Link to={HOME}>
             <IoArrowBackOutline className="text-2xl" />
           </Link>

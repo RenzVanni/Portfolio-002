@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { favorite } from "../helpers/spotify-api";
 import { useEffect, useRef, useState } from "react";
 import Likes from "../data/likes.json";
+import Magnifier from "react18-image-magnifier";
 
 type Prop = {
   name: string;
@@ -24,6 +25,7 @@ const Home = () => {
   });
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const audioRefs = useRef<HTMLAudioElement | null>(null);
+  const [imgWidth, setImgWidth] = useState(window.innerWidth);
 
   const handleMusicPlayer = () => {
     const currentAudio = audioRefs.current;
@@ -43,13 +45,18 @@ const Home = () => {
       try {
         const data = await favorite();
         setMusicData(data);
-      } catch (error) {
-        // console.log(error);
+      } catch (error: any) {
+        throw new Error(error);
       }
-      // console.log(musicData);
     };
     response();
   }, []);
+
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      setImgWidth(window.innerWidth);
+    });
+  }, [imgWidth]);
 
   return (
     <div className="w-full overflow-y-scroll lg:flex lg:flex-1 lg:overflow-y-visible">
@@ -118,7 +125,7 @@ const Home = () => {
       </div>
 
       <div className="bg-background2 p-3 lg:w-1/3 lg:p-9">
-        <p className="font-semibold text-xl">Menu</p>
+        <p className="font-semibold text-text2 text-xl">Menu</p>
         <div className="grid grid-cols-3 border-none">
           {menuData?.map((item) => {
             if (item.id !== 1) {
@@ -134,6 +141,21 @@ const Home = () => {
               );
             }
           })}
+        </div>
+        <div className="flex-1">
+          <p className="font-semibold text-text2 text-xl mb-3">Hobby</p>
+          {/* <div className="w-full h-[250px] bg-mobile bg-center bg-cover bg-no-repeat lg:bg-website"></div> */}
+          <Magnifier
+            src={
+              imgWidth <= 1024 ? "/images/mobile3.jpg" : "/images/website.jpg"
+            }
+            // height="200px"
+            mgHeight={80}
+            mgWidth={80}
+            mgShape="square"
+            zoomFactor={2}
+            mgShowOverflow={false}
+          />
         </div>
       </div>
     </div>

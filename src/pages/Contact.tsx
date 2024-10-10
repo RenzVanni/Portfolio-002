@@ -34,7 +34,6 @@ const Contact = () => {
           })
           .then((res) => {
             if (res.data) {
-              console.log(res.data);
               toast("Message Sent!");
               setData({ name: "", email: "", subject: "", content: "" });
             }
@@ -44,7 +43,6 @@ const Contact = () => {
             throw new Error(err.message);
           });
       } catch (error: any) {
-        console.log(error.message);
         throw new Error(error.message);
       }
     }
@@ -54,7 +52,7 @@ const Contact = () => {
       <div className="w-full p-3 lg:flex-1 lg:flex lg:flex-col lg:p-10">
         <div className="mb-6 hidden lg:block">
           <Link to={HOME}>
-            <IoArrowBackOutline className="text-2xl" />
+            <IoArrowBackOutline className="text-2xl text-menu" />
           </Link>
         </div>
 
