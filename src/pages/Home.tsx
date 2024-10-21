@@ -7,6 +7,17 @@ import { favorite } from "../helpers/spotify-api";
 import { useEffect, useRef, useState } from "react";
 import Likes from "../data/likes.json";
 import Magnifier from "react18-image-magnifier";
+import { motion } from "framer-motion";
+import {
+  home_variant1,
+  home_variant1_Animation,
+  home_variant2,
+  home_variant2_Animation,
+  home_variant3,
+  home_variant3_Animation,
+} from "../animation/homeVariant";
+import { HOME } from "../constants/Slugs";
+import ContextTitle from "../components/ContextTitle";
 
 type Prop = {
   name: string;
@@ -45,6 +56,7 @@ const Home = () => {
       try {
         const data = await favorite();
         setMusicData(data);
+        console.log(data);
       } catch (error: any) {
         throw new Error(error);
       }
@@ -59,10 +71,20 @@ const Home = () => {
   }, [imgWidth]);
 
   return (
-    <div className="w-full overflow-y-scroll lg:flex lg:flex-1 lg:overflow-y-visible">
+    <motion.div
+      key={HOME}
+      className="w-full overflow-y-scroll lg:flex lg:flex-1 lg:overflow-y-visible"
+    >
       <div className="w-full overflow-y-scroll pb-3 lg:flex-1 lg:flex lg:flex-col lg:overflow-visible">
         <div className="relative mb-6 lg:h-[440px]">
-          <div className="bg-mobile bg-center bg-cover bg-no-repeat px-3 py-20 flex-1 shadow-2xl lg:bg-website lg:absolute lg:top-[-50px] lg:left-0 lg:right-0">
+          <motion.div
+            variants={home_variant1}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            transition={home_variant1_Animation}
+            className="bg-mobile bg-center bg-cover bg-no-repeat px-3 py-20 flex-1 shadow-2xl lg:bg-website lg:absolute lg:top-[-50px] lg:left-0 lg:right-0"
+          >
             <p className="text-text text-4xl font-bold">{homeData?.name}</p>
 
             <p className="text-text text-xl font-semibold mb-3">
@@ -80,11 +102,18 @@ const Home = () => {
                 return <Item key={index} className="text-text text-xl" />;
               })}
             </div>
-          </div>
+          </motion.div>
         </div>
 
-        <div className="flex-1 px-3 overflow-y-scroll">
-          <p className="text-text2 text-xl font-semibold mb-3">Likes</p>
+        <motion.div
+          variants={home_variant3}
+          initial="initial"
+          animate="animate"
+          exit="exit"
+          transition={home_variant3_Animation}
+          className="flex-1 px-3 overflow-y-scroll"
+        >
+          <ContextTitle>Likes</ContextTitle>
           <div className="flex items-center overflow-x-scroll space-x-3 mb-6">
             {Likes.map((item) => (
               <div key={item.id} className="border border-border p-2 max-w-fit">
@@ -93,7 +122,7 @@ const Home = () => {
             ))}
           </div>
 
-          <p className="text-text2 text-xl font-semibold mb-3">Favorite</p>
+          <ContextTitle>Favorite</ContextTitle>
           <div className="h-[100px] flex items-center justify-start space-x-3">
             <div className="w-[100px] h-full">
               <audio ref={audioRefs} src={musicData.preview_url}></audio>
@@ -121,11 +150,18 @@ const Home = () => {
               )}
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
 
-      <div className="bg-background2 p-3 lg:w-1/3 lg:p-9">
-        <p className="font-semibold text-text2 text-xl">Menu</p>
+      <motion.div
+        variants={home_variant2}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        transition={home_variant2_Animation}
+        className="bg-background2 p-3 lg:w-1/3 lg:p-9"
+      >
+        <ContextTitle>Menu</ContextTitle>
         <div className="grid grid-cols-3 border-none">
           {menuData?.map((item) => {
             if (item.id !== 1) {
@@ -143,7 +179,7 @@ const Home = () => {
           })}
         </div>
         <div className="flex-1">
-          <p className="font-semibold text-text2 text-xl mb-3">Hobby</p>
+          <ContextTitle>Hobby</ContextTitle>
           {/* <div className="w-full h-[250px] bg-mobile bg-center bg-cover bg-no-repeat lg:bg-website"></div> */}
           <Magnifier
             src={
@@ -157,8 +193,8 @@ const Home = () => {
             mgShowOverflow={false}
           />
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 

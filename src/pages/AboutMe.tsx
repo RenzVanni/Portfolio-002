@@ -5,6 +5,11 @@ import { Link } from "react-router-dom";
 
 //DATA
 import Data from "../data/aboutMe.json";
+import { motion } from "framer-motion";
+import { about_variant1 } from "../animation/aboutVariant";
+import SubTitle from "../components/SubTitle";
+import ContextTitle from "../components/ContextTitle";
+import BackArrow from "../components/BackArrow";
 
 const AboutMe = () => {
   const [profilePic, setProfilePic] = useState(`/profile/${Data.image[0]}`);
@@ -12,18 +17,18 @@ const AboutMe = () => {
   return (
     <div className="w-full overflow-y-scroll lg:flex lg:flex-1 lg:overflow-y-visible">
       <div className="w-full overflow-y-scroll p-3 lg:flex-1 lg:p-10">
-        <div className="mb-6 hidden lg:block">
+        <BackArrow>
           <Link to={HOME}>
             <IoArrowBackOutline className="text-2xl" />
           </Link>
-        </div>
+        </BackArrow>
 
-        <p className="font-bold text-3xl mb-6">About Me</p>
+        <SubTitle>About Me</SubTitle>
 
-        <p className="font-semibold text-2xl">{Data?.name}</p>
+        <ContextTitle>{Data?.name}</ContextTitle>
         <p className="mb-6">{Data?.context}</p>
 
-        <p className="font-semibold text-2xl mb-3">Working Experience</p>
+        <ContextTitle>Working Experience</ContextTitle>
         <div className="flex h-[80px] items-center space-x-3">
           <div className="h-full">
             <img
@@ -44,15 +49,22 @@ const AboutMe = () => {
       </div>
 
       <div className="p-3 flex flex-col lg:w-1/3 lg:p-0f">
-        <div className="h-4/5 shadow-2xl mb-6">
+        <motion.div
+          variants={about_variant1}
+          initial="initial"
+          animate="animate"
+          exit="exit"
+          transition={{ duration: 0.5 }}
+          className="h-4/5 shadow-2xl mb-6"
+        >
           <img
             src={profilePic}
             alt="img"
             className="w-full h-full object-cover"
           />
-        </div>
+        </motion.div>
 
-        <p className="font-semibold text-xl mb-3">Profile</p>
+        <ContextTitle>Profile</ContextTitle>
         <div className="flex items-center flex-1 overflow-x-scroll">
           <div className="flex-1 flex space-x-3">
             {Data.image.map((item, index) => (

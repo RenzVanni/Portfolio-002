@@ -1,37 +1,61 @@
-import { IoCloseSharp } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
 import { GrTopCorner } from "react-icons/gr";
 import { GrBottomCorner } from "react-icons/gr";
 
 // data
 import Data from "../data/capstone";
-import { Link } from "react-router-dom";
-import { HOME } from "../constants/Slugs";
+import { motion } from "framer-motion";
+import {
+  capstone_variant1,
+  capstone_variant1_Animation,
+  capstone_variant2,
+  capstone_variant2_Animation,
+  capstone_variant3,
+  capstone_variant3_Animation,
+} from "../animation/capstoneVariant";
+import ContextTitle from "../components/ContextTitle";
+import ClosePage from "../components/ClosePage";
 
 const Capstone = () => {
   return (
     <div className="w-full overflow-y-scroll lg:flex lg:flex-1 lg:overflow-y-visible">
       <div className="w-full overflow-y-scroll pb-3 lg:flex-1 lg:flex lg:flex-col lg:overflow-visible">
-        <div className="relative mb-3 w-full h-[300px] md:h-[450px]">
+        <motion.div
+          variants={capstone_variant1}
+          initial="initial"
+          animate="animate"
+          exit="exit"
+          transition={capstone_variant1_Animation}
+          className="relative mb-3 w-full h-[300px] md:h-[450px]"
+        >
           <div className="bg-capstone bg-center w-full bg-cover bg-no-repeat px-3 py-20 h-full lg:flex-1 shadow-2xl lg:absolute lg:top-[-50px] lg:left-0 lg:right-0"></div>
-        </div>
+        </motion.div>
 
-        <div className="overflow-y-scroll px-3 lg:px-0">
+        <motion.div
+          variants={capstone_variant3}
+          initial="initial"
+          animate="animate"
+          exit="exit"
+          transition={capstone_variant3_Animation}
+          className="overflow-y-scroll px-3 lg:px-0"
+        >
           <p className="font-bold text-3xl text-text2 mb-3">{Data?.title}</p>
           <p className="text-text2">{Data?.context}</p>
-        </div>
+        </motion.div>
       </div>
 
-      <div className="bg-background2 p-3 lg:w-1/3 lg:p-0">
-        <div className="hidden lg:flex lg:justify-end">
-          <div className="w-fit p-6 cursor-pointer hover:bg-hoverBg">
-            <Link to={HOME}>
-              <IoCloseSharp className="text-3xl text-menu" />
-            </Link>
-          </div>
-        </div>
+      <motion.div
+        variants={capstone_variant2}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        transition={capstone_variant2_Animation}
+        className="bg-background2 p-3 lg:w-1/3 lg:p-0"
+      >
+        <ClosePage />
+
         <div className="lg:px-9">
-          <p className="font-semibold text-xl text-text2 mb-3">Members</p>
+          <ContextTitle>Members</ContextTitle>
           <div className="mb-6">
             {Data.devs.map((item, index) => (
               <div
@@ -61,14 +85,14 @@ const Capstone = () => {
               </div>
             ))}
           </div>
-          <p className="font-semibold text-xl mb-3 text-text2">Tech Stack</p>
+          <ContextTitle>Tech Stack</ContextTitle>
           <div className="flex space-x-3">
             {Data?.tech?.map((Item, index) => (
               <Item key={index} className="text-2xl text-text2" />
             ))}
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

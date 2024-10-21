@@ -19,12 +19,17 @@ import {
 import Projects from "./pages/Projects.tsx";
 import Musics from "./pages/Musics.tsx";
 import Contact from "./pages/Contact.tsx";
+import Login from "./pages/Login.tsx";
 
 const router = createBrowserRouter([
   {
     path: INDEX,
-    element: <App />,
+    element: <Login />,
     errorElement: <NotFound />,
+  },
+  {
+    path: HOME,
+    element: <App />,
     children: [
       {
         path: HOME,

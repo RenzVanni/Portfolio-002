@@ -1,31 +1,13 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { CiMenuKebab } from "react-icons/ci";
 import { SiIrobot } from "react-icons/si";
-import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 import menuData from "./data/menu";
+import { AnimatePresence } from "framer-motion";
 
 const App = () => {
   const [showMenu, setShowMenu] = useState(false);
-
   const location = useLocation();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const spotifyToken = async () => {
-      const queryParams = new URLSearchParams(location.search);
-      const accessToken = queryParams.get("access_token");
-      // const refreshToken = queryParams.get("refresh_token");
-
-      if (!accessToken) {
-        window.location.href = import.meta.env.VITE_BACKEND;
-      } else {
-        localStorage.setItem("access_token", accessToken);
-        navigate("/Home");
-      }
-    };
-
-    spotifyToken();
-  }, []);
   return (
     <div className="min-w-[300px] overflow-hidden bg-mobile bg-no-repeat bg-cover bg-center h-screen flex item justify-center relative  z-0 py-10 px-5 lg:bg-website lg:px-28 lg:py-20">
       <div className="absolute inset-0 backdrop-blur-md z-[-1]"></div>
@@ -76,7 +58,9 @@ const App = () => {
           </div>
         </div>
 
-        <Outlet />
+        <AnimatePresence>
+          <Outlet />
+        </AnimatePresence>
       </div>
     </div>
   );

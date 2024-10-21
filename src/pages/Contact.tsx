@@ -4,6 +4,8 @@ import { IoArrowBackOutline } from "react-icons/io5";
 import { useState } from "react";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
+import SubTitle from "../components/SubTitle";
+import BackArrow from "../components/BackArrow";
 
 type Prop = {
   name: string;
@@ -50,13 +52,13 @@ const Contact = () => {
   return (
     <div className="w-full overflow-y-scroll flex flex-col-reverse lg:flex-row lg:flex-1 lg:overflow-y-hidden">
       <div className="w-full p-3 lg:flex-1 lg:flex lg:flex-col lg:p-10">
-        <div className="mb-6 hidden lg:block">
+        <BackArrow>
           <Link to={HOME}>
             <IoArrowBackOutline className="text-2xl text-menu" />
           </Link>
-        </div>
+        </BackArrow>
 
-        <p className="font-bold text-3xl mb-6">Contact Me</p>
+        <SubTitle>Contact Me</SubTitle>
         <div className="flex-1">
           <form
             action=""

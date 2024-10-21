@@ -4,6 +4,10 @@ import { Link } from "react-router-dom";
 import { HOME } from "../constants/Slugs";
 import { playlist } from "../helpers/spotify-api";
 import { FaRegStopCircle } from "react-icons/fa";
+import { motion } from "framer-motion";
+import { music_variant1, music_variant2 } from "../animation/musicVariant";
+import SubTitle from "../components/SubTitle";
+import BackArrow from "../components/BackArrow";
 
 interface Track {
   track: {
@@ -60,16 +64,25 @@ const Musics = () => {
   return (
     <div className="w-full overflow-y-scroll flex flex-col-reverse lg:flex-row lg:flex-1 lg:overflow-y-hidden">
       <div className="w-full p-3 lg:flex-1 lg:p-10 lg:overflow-y-scroll">
-        <div className="mb-6 hidden lg:block">
+        <BackArrow>
           <Link to={HOME}>
             <IoArrowBackOutline className="text-2xl text-menu" />
           </Link>
-        </div>
+        </BackArrow>
 
-        <p className="font-bold text-3xl text-text2 mb-6">Music</p>
-        {playlistData.playlist.map((item, index) => {
+        <SubTitle>Music</SubTitle>
+
+        {playlistData?.playlist?.map((item, index) => {
           return (
-            <div key={index} className="shadow-sm mb-3">
+            <motion.div
+              variants={music_variant1}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              custom={index}
+              key={index}
+              className="shadow-sm mb-3"
+            >
               <div className="flex items-center h-[80px]">
                 <audio
                   ref={(el) => (audioRefs.current[index] = el)}
@@ -105,19 +118,25 @@ const Musics = () => {
                   )}
                 </div>
               </div>
-            </div>
+            </motion.div>
           );
         })}
       </div>
 
       <div className="bg-background2 p-3 lg:flex lg:w-1/3">
-        <div className="h-full lg:h-4/5 shadow-2xl mb-6">
+        <motion.div
+          variants={music_variant2}
+          initial="initial"
+          animate="animate"
+          exit="exit"
+          className="h-full lg:h-4/5 shadow-2xl mb-6"
+        >
           <img
             src={playlistData.cover}
             alt="img"
             className="w-full h-full object-cover"
           />
-        </div>
+        </motion.div>
       </div>
     </div>
   );

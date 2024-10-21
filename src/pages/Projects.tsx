@@ -1,12 +1,11 @@
 import { useCallback, useEffect } from "react";
-import { IoCloseSharp } from "react-icons/io5";
-import { Link } from "react-router-dom";
-import { HOME } from "../constants/Slugs";
 import { GrFormNextLink, GrFormPreviousLink } from "react-icons/gr";
 //data
 import Data from "../data/projects";
 import { motion } from "framer-motion";
 import useEmblaCarousel from "embla-carousel-react";
+import SubTitle from "../components/SubTitle";
+import ClosePage from "../components/ClosePage";
 
 const Projects = () => {
   const slide_count = Data.length;
@@ -32,15 +31,9 @@ const Projects = () => {
   });
   return (
     <div className="flex-1 px-3 lg:px-0 relative">
-      <div className="hidden lg:flex lg:justify-end">
-        <div className="w-fit p-6 cursor-pointer hover:bg-hoverBg">
-          <Link to={HOME}>
-            <IoCloseSharp className="text-3xl text-menu" />
-          </Link>
-        </div>
-      </div>
+      <ClosePage />
 
-      <p className="font-bold text-3xl mb-6 text-text2">Projects</p>
+      <SubTitle>Projects</SubTitle>
 
       <div className="flex gap-6 flex-col-reverse sm:gap-0 sm:flex-col">
         <div className="flex justify-center  lg:mb-3 sm:justify-end lg:pr-24">

@@ -37,6 +37,15 @@ export const playlist = async () => {
     const playlist = lists.data.items;
     return { playlist, coverImage };
   } catch (error) {
+    const refresh_token = localStorage.getItem("refresh_token");
+
+    const err = await axios.get(
+      `${import.meta.env.VITE_BACKEND_REFRESH}?refresh_token=${refresh_token}`
+    );
+
+    localStorage.setItem("access_token", err.data.access_token);
+    localStorage.setItem("refresh_token", err.data.refresh_token);
+
     return null;
   }
 };
@@ -56,6 +65,13 @@ export const favorite = async () => {
 
     return music.data.tracks.items[0];
   } catch (error: any) {
+    const refresh_token = localStorage.getItem("refresh_token");
+
+    const err = await axios.get(
+      `${import.meta.env.VITE_BACKEND_REFRESH}?refresh_token=${refresh_token}`
+    );
+
+    console.log(err);
     throw new Error(error);
   }
 };

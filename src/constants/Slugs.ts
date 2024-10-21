@@ -1,7 +1,7 @@
 export const INDEX = "/";
 export const HOME = "/Home";
-export const ABOUTME = "/AboutMe";
-export const CAPSTONE = "/Capstone";
-export const PROJECT = "/Project";
-export const MUSIC = "/Music";
-export const CONTACT = "/Contact";
+export const ABOUTME = `${HOME}/AboutMe`;
+export const CAPSTONE = `${HOME}/Capstone`;
+export const PROJECT = `${HOME}/Project`;
+export const MUSIC = `${HOME}/Music`;
+export const CONTACT = `${HOME}/Contact`;
